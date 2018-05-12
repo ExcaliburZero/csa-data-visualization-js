@@ -23,29 +23,32 @@ function main() {
         var meetings = crossfilter(data);
         var all = meetings.groupAll();
 
-        var yearlyDimension = meetings.dimension(function (d) {
-            return d3.timeYear(d.dd).getFullYear();
-        });
-
         var dateDimension = meetings.dimension(function (d) {
             return d.dd;
+        });
+
+        var yearDimension = meetings.dimension(function (d) {
+            return d.Year;
         });
 
         console.log(dateDimension);
 
         meetingsTable
-            .dimension(dateDimension)
+            .dimension(yearDimension)
             .group(function (d) {
-                return d.Date;
+                return d.Year;
             })
-            .size(10)
+            .size(1000)
             .columns([
                 "Meeting",
                 "Date",
                 "Year",
                 "Attendees",
                 "Type"
-            ]);
+            ])
+            .sortBy(function (d) {
+                return d.dd;
+            });
 
         console.log(data);
 

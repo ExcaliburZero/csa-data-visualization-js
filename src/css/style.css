@@ -1,3 +1,16 @@
 #meetingsTable td {
+    padding: 2pt;
+}
+
+#meetingsTable ._2 {
+    padding-left: 8pt;
+    padding-right: 8pt;
+}
+
+#meetingsTable ._3 {
     text-align: center;
+}
+
+.info td {
+    background-color: #d9edf7;
 }

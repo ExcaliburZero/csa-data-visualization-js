@@ -48,6 +48,9 @@ function main() {
             ])
             .sortBy(function (d) {
                 return d.dd;
+            })
+            .on("renderlet", function (table) {
+                table.selectAll(".dc-table-group").classed("info", true);
             });
 
         console.log(data);

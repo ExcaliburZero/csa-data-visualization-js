@@ -6,13 +6,13 @@ function main() {
 
     console.log("Hello, World!");
 
-    var meetingsTable = dc.dataTable("#meetingsTable");
+    const meetingsTable = dc.dataTable("#meetingsTable");
 
     d3.csv("meetings.csv").then(function (data) {
-        var dateFormatSpecifier = '%m/%d/%Y';
-        var dateFormat = d3.timeFormat(dateFormatSpecifier);
-        var dateFormatParser = d3.timeParse(dateFormatSpecifier);
-        var numberFormat = d3.format('.2f');
+        const dateFormatSpecifier = '%m/%d/%Y';
+        const dateFormat = d3.timeFormat(dateFormatSpecifier);
+        const dateFormatParser = d3.timeParse(dateFormatSpecifier);
+        const numberFormat = d3.format('.2f');
 
         data.forEach(function (d) {
             d.dd = dateFormatParser(d.Date);
@@ -20,14 +20,14 @@ function main() {
             d.Attendees = +d.Attendees; // coerce to number
         });
 
-        var meetings = crossfilter(data);
-        var all = meetings.groupAll();
+        const meetings = crossfilter(data);
+        const all = meetings.groupAll();
 
-        var dateDimension = meetings.dimension(function (d) {
+        const dateDimension = meetings.dimension(function (d) {
             return d.dd;
         });
 
-        var yearDimension = meetings.dimension(function (d) {
+        const yearDimension = meetings.dimension(function (d) {
             return d.Year;
         });
 
